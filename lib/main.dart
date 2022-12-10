@@ -14,6 +14,13 @@ void main() {
   final container = ProviderContainer(
     overrides: [],
   )..read(formProvider);
+
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: const ProviderScope(child: App()),
+    ),
+  );
   */
 
   runApp(

@@ -7,6 +7,7 @@ import 'package:form_app/form_data.dart';
 import 'package:form_app/password_field.dart';
 import 'package:form_app/register_page.dart';
 import 'package:form_app/routes/another_page.dart';
+import 'package:form_app/utils/text_editing_controller_helper.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +21,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   late final FocusNode _submitFocusNode;
 
@@ -31,6 +34,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
     _submitFocusNode.dispose();
     super.dispose();
   }
@@ -49,7 +54,13 @@ class _LoginPageState extends State<LoginPage> {
             child: Consumer(
               builder: (context, ref, __) {
                 final formData = ref.watch(formProvider).formData;
-                print('B__________ ${formData.email}');
+
+                _emailController.text = formData.email ?? '';
+                _emailController.setToNormalPosition();
+
+                _passwordController.text = formData.password ?? '';
+                _passwordController.setToNormalPosition();
+
                 return AppKeyboardListener(
                   submitFocusNode: _submitFocusNode,
                   onSubmit: () => _onSubmit(formData),
@@ -62,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             EmailField(
-                              value: formData.email,
+                              controller: _emailController,
                               onChanged: (email) {
                                 ref.watch(formProvider.notifier).formData = formData.copyWith(email: email);
                               },
@@ -72,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             const SizedBox(height: 20.0),
                             PasswordField(
-                              value: formData.password,
+                              controller: _passwordController,
                               onChanged: (password) {
                                 ref.read(formProvider.notifier).formData = formData.copyWith(password: password);
                               },

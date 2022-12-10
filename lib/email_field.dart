@@ -1,45 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:form_app/form_data.dart';
 import 'package:form_app/utils/reg_ex_helper.dart';
 
 class EmailField extends StatefulWidget {
   const EmailField({
     super.key,
-    required this.value,
+    required this.controller,
     required this.onChanged,
     required this.onCleared,
   });
 
+  final TextEditingController controller;
   final void Function(String email) onChanged;
   final VoidCallback onCleared;
-  final String? value;
 
   @override
   State<EmailField> createState() => _EmailFieldState();
 }
 
 class _EmailFieldState extends State<EmailField> {
-  final _emailController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    //final formNotifier = ProviderScope.containerOf(context, listen: false).read(formProvider);
-    //_emailController.text = formNotifier.formData.email ?? '';
-    _emailController.text = widget.value ?? '';
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: _emailController,
+      controller: widget.controller,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       onChanged: widget.onChanged,
@@ -52,10 +34,7 @@ class _EmailFieldState extends State<EmailField> {
           canRequestFocus: false,
           child: IconButton(
             icon: const Icon(Icons.clear),
-            onPressed: () {
-              _emailController.clear();
-              widget.onCleared();
-            },
+            onPressed: widget.onCleared,
           ),
         ),
       ),

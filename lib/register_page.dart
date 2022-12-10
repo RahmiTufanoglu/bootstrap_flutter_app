@@ -6,6 +6,7 @@ import 'package:form_app/form_data.dart';
 import 'package:form_app/home_page.dart';
 import 'package:form_app/password_field.dart';
 import 'package:form_app/terms_row.dart';
+import 'package:form_app/utils/text_editing_controller_helper.dart';
 import 'package:go_router/go_router.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -19,6 +20,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   late final FocusNode _mainFocusNode;
   late final FocusNode _submitFocusNode;
@@ -32,6 +35,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
     _mainFocusNode.dispose();
     _submitFocusNode.dispose();
     super.dispose();
@@ -51,6 +56,13 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Consumer(
               builder: (context, ref, __) {
                 final formData = ref.watch(formProvider).formData;
+
+                _emailController.text = formData.email ?? '';
+                _emailController.setToNormalPosition();
+
+                _passwordController.text = formData.password ?? '';
+                _passwordController.setToNormalPosition();
+
                 return AppKeyboardListener(
                   submitFocusNode: _submitFocusNode,
                   onSubmit: () => _onSubmit(formData),
@@ -63,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             EmailField(
-                              value: formData.email,
+                              controller: _emailController,
                               onChanged: (email) {
                                 ref.watch(formProvider.notifier).formData = formData.copyWith(email: email);
                               },
@@ -73,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 20.0),
                             PasswordField(
-                              value: formData.password,
+                              controller: _passwordController,
                               counterVisible: true,
                               onChanged: (password) {
                                 ref.read(formProvider.notifier).formData = formData.copyWith(password: password);
@@ -86,7 +98,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             TermsCheckboxRow(
                               value: formData.termsAccepted ?? false,
                               onChanged: (termsAccepted) {
-                                ref.read(formProvider.notifier).formData = formData.copyWith(termsAccepted: termsAccepted);
+                                ref.read(formProvider.notifier).formData =
+                                    formData.copyWith(termsAccepted: termsAccepted);
                               },
                             ),
                             const SizedBox(height: 20.0),

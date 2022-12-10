@@ -4,42 +4,28 @@ import 'package:form_app/utils/reg_ex_helper.dart';
 class PasswordField extends StatefulWidget {
   const PasswordField({
     super.key,
-    required this.value,
+    required this.controller,
     required this.onChanged,
     required this.onCleared,
     this.counterVisible = false,
   });
 
+  final TextEditingController controller;
   final void Function(String password) onChanged;
   final VoidCallback onCleared;
   final bool counterVisible;
-  final String? value;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
 }
 
 class _PasswordFieldState extends State<PasswordField> {
-  final _passwordController = TextEditingController();
-
   var _obscurePassword = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _passwordController.text = widget.value ?? '';
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: _passwordController,
+      controller: widget.controller,
       textInputAction: TextInputAction.next,
       obscureText: _obscurePassword,
       onChanged: widget.onChanged,
@@ -78,10 +64,7 @@ class _PasswordFieldState extends State<PasswordField> {
               ),
               IconButton(
                 icon: const Icon(Icons.clear),
-                onPressed: () {
-                  _passwordController.clear();
-                  widget.onCleared();
-                },
+                onPressed: widget.onCleared,
               ),
             ],
           ),
