@@ -48,7 +48,8 @@ class _LoginPageState extends State<LoginPage> {
             height: maxHeight,
             child: Consumer(
               builder: (context, ref, __) {
-                final formData = ref.watch(formProvider);
+                final formData = ref.watch(formProvider).formData;
+                print('B__________ ${formData.email}');
                 return AppKeyboardListener(
                   submitFocusNode: _submitFocusNode,
                   onSubmit: () => _onSubmit(formData),
@@ -63,20 +64,20 @@ class _LoginPageState extends State<LoginPage> {
                             EmailField(
                               value: formData.email,
                               onChanged: (email) {
-                                ref.watch(formProvider.notifier).state = formData.copyWith(email: email);
+                                ref.watch(formProvider.notifier).formData = formData.copyWith(email: email);
                               },
                               onCleared: () {
-                                ref.watch(formProvider.notifier).state = formData.copyWith(email: '');
+                                ref.watch(formProvider.notifier).formData = formData.copyWith(email: '');
                               },
                             ),
                             const SizedBox(height: 20.0),
                             PasswordField(
                               value: formData.password,
                               onChanged: (password) {
-                                ref.read(formProvider.notifier).state = formData.copyWith(password: password);
+                                ref.read(formProvider.notifier).formData = formData.copyWith(password: password);
                               },
                               onCleared: () {
-                                ref.read(formProvider.notifier).state = formData.copyWith(password: '');
+                                ref.read(formProvider.notifier).formData = formData.copyWith(password: '');
                               },
                             ),
                             const SizedBox(height: 20.0),

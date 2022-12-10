@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FormData extends Equatable {
@@ -37,23 +38,23 @@ class FormData extends Equatable {
   bool get stringify => true;
 }
 
+/*
 final formProvider = StateProvider<FormData>((ref) {
   return const FormData.empty();
 });
+*/
 
-/*
-final formProvider = ChangeNotifierProvider<FormProvider>((ref) {
-  return FormProvider();
+final formProvider = ChangeNotifierProvider<FormNotifier>((ref) {
+  return FormNotifier();
 });
 
-class FormProvider extends ChangeNotifier {
+class FormNotifier extends ChangeNotifier {
   var _formData = const FormData.empty();
 
   FormData get formData => _formData;
 
-  update(FormData formData) {
+  set formData(FormData formData) {
     _formData = formData;
     notifyListeners();
   }
 }
-*/

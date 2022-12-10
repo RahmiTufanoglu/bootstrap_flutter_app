@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:form_app/form_data.dart';
 import 'package:form_app/utils/reg_ex_helper.dart';
 
 class EmailField extends StatefulWidget {
@@ -23,6 +25,8 @@ class _EmailFieldState extends State<EmailField> {
   @override
   void initState() {
     super.initState();
+    //final formNotifier = ProviderScope.containerOf(context, listen: false).read(formProvider);
+    //_emailController.text = formNotifier.formData.email ?? '';
     _emailController.text = widget.value ?? '';
   }
 

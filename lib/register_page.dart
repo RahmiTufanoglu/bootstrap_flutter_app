@@ -50,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
             height: maxHeight,
             child: Consumer(
               builder: (context, ref, __) {
-                final formData = ref.watch(formProvider);
+                final formData = ref.watch(formProvider).formData;
                 return AppKeyboardListener(
                   submitFocusNode: _submitFocusNode,
                   onSubmit: () => _onSubmit(formData),
@@ -65,10 +65,10 @@ class _RegisterPageState extends State<RegisterPage> {
                             EmailField(
                               value: formData.email,
                               onChanged: (email) {
-                                ref.watch(formProvider.notifier).state = formData.copyWith(email: email);
+                                ref.watch(formProvider.notifier).formData = formData.copyWith(email: email);
                               },
                               onCleared: () {
-                                ref.watch(formProvider.notifier).state = formData.copyWith(email: '');
+                                ref.watch(formProvider.notifier).formData = formData.copyWith(email: '');
                               },
                             ),
                             const SizedBox(height: 20.0),
@@ -76,17 +76,17 @@ class _RegisterPageState extends State<RegisterPage> {
                               value: formData.password,
                               counterVisible: true,
                               onChanged: (password) {
-                                ref.read(formProvider.notifier).state = formData.copyWith(password: password);
+                                ref.read(formProvider.notifier).formData = formData.copyWith(password: password);
                               },
                               onCleared: () {
-                                ref.read(formProvider.notifier).state = formData.copyWith(password: '');
+                                ref.read(formProvider.notifier).formData = formData.copyWith(password: '');
                               },
                             ),
                             const SizedBox(height: 20.0),
                             TermsCheckboxRow(
                               value: formData.termsAccepted ?? false,
                               onChanged: (termsAccepted) {
-                                ref.read(formProvider.notifier).state = formData.copyWith(termsAccepted: termsAccepted);
+                                ref.read(formProvider.notifier).formData = formData.copyWith(termsAccepted: termsAccepted);
                               },
                             ),
                             const SizedBox(height: 20.0),

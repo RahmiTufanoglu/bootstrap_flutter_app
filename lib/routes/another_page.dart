@@ -50,8 +50,7 @@ class _AnotherPageState extends State<AnotherPage> {
             height: maxHeight,
             child: Consumer(
               builder: (context, ref, __) {
-                final formData = ref.watch(formProvider);
-                print('FORMDATA22__________ ${formData}');
+                final formData = ref.watch(formProvider).formData;
                 return RawKeyboardListener(
                   focusNode: _mainFocusNode,
                   onKey: (event) {
@@ -76,20 +75,20 @@ class _AnotherPageState extends State<AnotherPage> {
                             EmailField(
                               value: formData.email,
                               onChanged: (email) {
-                                ref.watch(formProvider.notifier).state = formData.copyWith(email: email);
+                                ref.watch(formProvider.notifier).formData = formData.copyWith(email: email);
                               },
                               onCleared: () {
-                                ref.watch(formProvider.notifier).state = formData.copyWith(email: '');
+                                ref.watch(formProvider.notifier).formData = formData.copyWith(email: '');
                               },
                             ),
                             const SizedBox(height: 20.0),
                             PasswordField(
                               value: formData.password ?? '',
                               onChanged: (password) {
-                                ref.read(formProvider.notifier).state = formData.copyWith(password: password);
+                                ref.read(formProvider.notifier).formData = formData.copyWith(password: password);
                               },
                               onCleared: () {
-                                ref.read(formProvider.notifier).state = formData.copyWith(password: '');
+                                ref.read(formProvider.notifier).formData = formData.copyWith(password: '');
                               },
                             ),
                             const SizedBox(height: 20.0),
@@ -148,8 +147,8 @@ class _AnotherPageState extends State<AnotherPage> {
     // ignore: avoid_print
     print(
       'Email: ${formData.email}, '
-          'Password: ${formData.password}, '
-          'Term accepted: ${formData.termsAccepted.toString()}',
+      'Password: ${formData.password}, '
+      'Term accepted: ${formData.termsAccepted.toString()}',
     );
     final formValid = _formKey.currentState?.validate() ?? false;
     final accepted = formData.termsAccepted ?? false;

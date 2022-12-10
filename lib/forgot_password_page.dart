@@ -14,14 +14,14 @@ class ForgotPasswordPage extends StatelessWidget {
       appBar: AppBar(),
       body: Consumer(
         builder: (_, ref, __) {
-          final formData = ref.watch(formProvider);
+          final formData = ref.watch(formProvider).formData;
           return EmailField(
             value: formData.email,
             onChanged: (email) {
-              ref.read(formProvider.notifier).state = formData.copyWith(email: email);
+              ref.read(formProvider.notifier).formData = formData.copyWith(email: email);
             },
             onCleared: () {
-              ref.read(formProvider.notifier).state = formData.copyWith(email: '');
+              ref.read(formProvider.notifier).formData = formData.copyWith(email: '');
             },
           );
         },
