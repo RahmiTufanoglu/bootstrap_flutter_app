@@ -24,20 +24,10 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-
-  late final TextEditingController _emailController;
-  late final TextEditingController _passwordController;
-  late final FocusNode _mainFocusNode;
-  late final FocusNode _submitFocusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
-    _mainFocusNode = FocusNode();
-    _submitFocusNode = FocusNode();
-  }
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _mainFocusNode = FocusNode();
+  final _submitFocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -112,9 +102,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 20.0),
                         SizedBox(
-                          width: 150.0,
                           height: 50.0,
-                          child: OutlinedButton(
+                          child: TextButton(
                             focusNode: _submitFocusNode,
                             onPressed: () async => _onSubmit(formData),
                             child: const Text('Register'),

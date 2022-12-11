@@ -1,3 +1,5 @@
+import 'dart:developer' as debug;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_app/email_field.dart';
@@ -19,21 +21,15 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _formKey = GlobalKey<FormState>();
-
-  late final TextEditingController _emailController;
-  late final TextEditingController _passwordController;
-
-  @override
-  void initState() {
-    super.initState();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
-  }
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _submitFocusNode = FocusNode();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _submitFocusNode.dispose();
     super.dispose();
   }
 
@@ -87,12 +83,46 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         ref.read(formProvider.notifier).formData = formData.copyWith(password: '');
                       },
                     ),
+                    const SizedBox(height: 50.0),
+                    SizedBox(
+                      height: 50.0,
+                      child: TextButton(
+                        focusNode: _submitFocusNode,
+                        onPressed: () async => _onSubmit(formData),
+                        child: const Text('Reset password'),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           );
         },
+      ),
+    );
+  }
+
+  Future<void> _onSubmit(FormData formData) async {
+    debug.log(
+      'Email: ${formData.email}, '
+      'Password: ${formData.password}, '
+      'Term accepted: ${formData.termsAccepted.toString()}',
+    );
+    final formValid = _formKey.currentState?.validate() ?? false;
+    final accepted = formData.termsAccepted ?? false;
+    if (formValid && accepted) {
+      _showSnackBar('Processing Data');
+    } else {
+      _showSnackBar('Invalid Data');
+    }
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(milliseconds: 800),
+        onVisible: () {},
       ),
     );
   }

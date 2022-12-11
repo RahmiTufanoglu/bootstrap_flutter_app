@@ -26,18 +26,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-
-  late final TextEditingController _emailController;
-  late final TextEditingController _passwordController;
-  late final FocusNode _submitFocusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
-    _submitFocusNode = FocusNode();
-  }
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _submitFocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -129,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Text(
-                                  'Signup',
+                                  'Register',
                                   style: textStyle.primary,
                                 ),
                               ),
@@ -139,9 +130,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 20.0),
                       SizedBox(
-                        width: 150.0,
                         height: 50.0,
-                        child: OutlinedButton(
+                        child: TextButton(
                           focusNode: _submitFocusNode,
                           onPressed: () async => _onSubmit(formData),
                           child: const Text('Login'),
