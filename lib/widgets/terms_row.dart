@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:form_app/themes/text_style_extension.dart';
+import 'package:form_app/themes/theme_helper.dart';
 
 class TermsCheckboxRow extends StatefulWidget {
   const TermsCheckboxRow({
@@ -23,13 +25,14 @@ class _TermsCheckboxRowState extends State<TermsCheckboxRow> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text('Accept terms and conditions.'),
+          Text(
+            'Accept terms and conditions.',
+            style: context.themeExt<TextStyleExtension>().primary,
+          ),
           Checkbox(
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             value: widget.value,
-            onChanged: (value) {
-              //_accepted = value ?? false;
-              widget.onChanged(value ?? false);
-            },
+            onChanged: (value) => widget.onChanged(value ?? false),
           ),
         ],
       ),

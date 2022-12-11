@@ -28,6 +28,8 @@ class _EmailFieldState extends State<EmailField> {
       validator: _onValidate,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
+        labelText: 'Email',
+        hintText: 'hello@world.com',
         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
         suffixIcon: Focus(
           descendantsAreFocusable: false,

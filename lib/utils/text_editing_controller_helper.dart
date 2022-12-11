@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 extension TextEditingControllerHelper on TextEditingController {
-  void setToNormalPosition() {
+  void normalizeCursorPosition() {
     selection = TextSelection.fromPosition(
       TextPosition(offset: text.length),
     );

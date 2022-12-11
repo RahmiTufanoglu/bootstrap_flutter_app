@@ -47,6 +47,8 @@ class _PasswordFieldState extends State<PasswordField> {
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+        labelText: 'Password',
+        hintText: 'H%7b1v?9',
         suffixIcon: Focus(
           descendantsAreFocusable: false,
           canRequestFocus: false,

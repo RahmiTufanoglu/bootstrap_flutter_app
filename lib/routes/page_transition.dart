@@ -14,7 +14,7 @@ class PageTransition extends CustomTransitionPage {
                   begin: kIsWeb ? Offset.zero : const Offset(0.0, -1.0),
                   end: Offset.zero,
                 ).chain(
-                  CurveTween(curve: Curves.ease),
+                  CurveTween(curve: Curves.easeInOutSine),
                 ),
               ),
               child: child,
