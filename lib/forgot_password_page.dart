@@ -76,6 +76,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     const SizedBox(height: 20.0),
                     PasswordField(
                       controller: _passwordController,
+                      counterVisible: true,
                       onChanged: (password) {
                         ref.read(formProvider.notifier).formData = formData.copyWith(password: password);
                       },
