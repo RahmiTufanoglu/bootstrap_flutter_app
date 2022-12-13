@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FormData extends Equatable {
@@ -44,17 +43,27 @@ final formProvider = StateProvider<FormData>((ref) {
 });
 */
 
+/*
 final formProvider = ChangeNotifierProvider<FormNotifier>((ref) {
   return FormNotifier();
 });
+*/
+final formProvider = StateNotifierProvider<FormNotifier, FormData>((ref) {
+  return FormNotifier();
+});
 
-class FormNotifier extends ChangeNotifier {
-  var _formData = const FormData.empty();
+class FormNotifier extends StateNotifier<FormData> {
+  FormNotifier() : super(const FormData());
+
+  final _formData = const FormData.empty();
 
   FormData get formData => _formData;
 
-  set formData(FormData formData) {
-    _formData = formData;
-    notifyListeners();
+  set formData(FormData data) {
+    state = state.copyWith(
+      email: data.email,
+      password: data.password,
+      termsAccepted: data.termsAccepted,
+    );
   }
 }

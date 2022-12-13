@@ -52,7 +52,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: CenteredContainer(
         child: Consumer(
           builder: (context, ref, __) {
-            final formData = ref.watch(formProvider).formData;
+            final formData = ref.watch(formProvider);
 
             _emailController
               ..text = formData.email ?? ''

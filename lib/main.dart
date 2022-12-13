@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_app/app.dart';
 import 'package:form_app/app_start_loader.dart';
@@ -11,9 +10,11 @@ import 'package:logging/logging.dart';
 Future<void> main() async {
   runApp(const AppStartLoader());
 
+  /*
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
+  */
 
   await runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();

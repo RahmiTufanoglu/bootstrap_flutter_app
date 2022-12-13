@@ -46,7 +46,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       ),
       body: Consumer(
         builder: (_, ref, __) {
-          final formData = ref.watch(formProvider).formData;
+          final formData = ref.watch(formProvider);
 
           _emailController
             ..text = formData.email ?? ''

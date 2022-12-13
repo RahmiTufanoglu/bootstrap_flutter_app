@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
       body: CenteredContainer(
         child: Consumer(
           builder: (context, ref, __) {
-            final formData = ref.watch(formProvider).formData;
+            final formData = ref.watch(formProvider);
 
             _emailController
               ..text = formData.email ?? ''

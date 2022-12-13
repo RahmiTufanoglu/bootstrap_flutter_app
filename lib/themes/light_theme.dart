@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_app/themes/text_style_extension.dart';
 import 'package:form_app/utils/colors.dart';
 import 'package:form_app/utils/fonts.dart';
@@ -41,6 +42,9 @@ ThemeData get appLightTheme {
 
     /// AppBar
     appBarTheme: const AppBarTheme(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+      ),
       elevation: 0.0,
       //toolbarHeight: 40,
       backgroundColor: AppColors.content,
