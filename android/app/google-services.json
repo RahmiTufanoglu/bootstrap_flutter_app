@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "986159416706",
+    "project_id": "qwiz-fbe62",
+    "storage_bucket": "qwiz-fbe62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986159416706:android:fdca7a055dc8a4ac5b3b9b",
+        "android_client_info": {
+          "package_name": "com.example.form_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "986159416706-0lrgqvbhlj9qc7noh7ckdiibht2aov36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL524hcSvZtNOodh5y1qEA6pxcf-Tyrkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "986159416706-0lrgqvbhlj9qc7noh7ckdiibht2aov36.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "986159416706-eonhkvr0ljtdjso5u3g3981c28m71ibj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.formApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
