@@ -25,6 +25,7 @@ class _EmailFieldState extends State<EmailField> {
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       onChanged: widget.onChanged,
+      autocorrect: false,
       validator: _onValidate,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),

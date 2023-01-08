@@ -19,6 +19,7 @@ class TermsCheckboxRow extends StatefulWidget {
 class _TermsCheckboxRowState extends State<TermsCheckboxRow> {
   @override
   Widget build(BuildContext context) {
+    final textStyle = context.themeExt<TextStyleExtension>();
     return Focus(
       descendantsAreFocusable: false,
       canRequestFocus: false,
@@ -27,7 +28,7 @@ class _TermsCheckboxRowState extends State<TermsCheckboxRow> {
         children: [
           Text(
             'Accept terms and conditions.',
-            style: context.themeExt<TextStyleExtension>().primary,
+            style: textStyle.primary,
           ),
           Checkbox(
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

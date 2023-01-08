@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AppStartLoader extends StatelessWidget {
-  const AppStartLoader({super.key});
+class AppStartLoaderPage extends StatelessWidget {
+  const AppStartLoaderPage({super.key});
 
   @override
   Widget build(BuildContext context) {
